@@ -1,0 +1,43 @@
+<g:javascript>
+
+function updateClassification(e) 
+{ // The response comes back as a bunch-o-JSON 
+var classifications = eval("(" + e.responseText + ")") // evaluate JSON
+
+if (classifications) 
+	{ var rselect = document.getElementById('classification')
+
+// Clear all previous options 
+	var l = rselect.length
+
+while (l > 0) { 
+	l-- 
+	rselect.remove(l) 
+	}
+
+// Rebuild the select 
+	for (var i=0; i < classifications.length; i++) 
+		{ 
+		var classification = classifications[i]
+		var opt = document.createElement('option');
+		opt.text = classification.name 
+		opt.value = classification.id 
+		try 
+		{ 
+		rselect.add(opt, null) // standards compliant; doesn't work in IE 
+		} 
+		catch(ex) { 
+		rselect.add(opt) // IE only 
+		} 
+	} 
+	} 
+}
+
+// This is called when the page loads to initialize classification 
+var zselect = document.getElementById('project.name') 
+var zopt = zselect.options[zselect.selectedIndex] 
+${remoteFunction(controller:"project", 
+action:"ajaxGetClassifications", 
+params:"'id=' + zopt.value", onComplete:"updateClassification(e)")}
+
+</g:javascript>
