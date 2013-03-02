@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TimeByProjectAll" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="314e5159-6433-4e70-a860-1c7290b19585">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Robert\\Documents\\Reports\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[Select * from Time
+inner join project on project_id = projectname_id
+inner join Time_Classification on classification_id = TC_id
+order by project_id, classification_id]]>
+	</queryString>
+	<field name="Time_id" class="java.lang.Integer"/>
+	<field name="version" class="java.math.BigDecimal"/>
+	<field name="classification_id" class="java.lang.Integer"/>
+	<field name="Username" class="java.lang.String"/>
+	<field name="Date_created" class="java.sql.Timestamp"/>
+	<field name="Date_Worked" class="java.sql.Timestamp"/>
+	<field name="projectname_id" class="java.lang.Integer"/>
+	<field name="Time_Spent" class="java.lang.Double"/>
+	<field name="Project_id" class="java.lang.Integer"/>
+	<field name="Description" class="java.lang.String"/>
+	<field name="Estimated_Completion" class="java.sql.Timestamp"/>
+	<field name="Estimated_duration" class="java.lang.Integer"/>
+	<field name="Project_Name" class="java.lang.String"/>
+	<field name="PMG_No" class="java.lang.Integer"/>
+	<field name="project_manager_id" class="java.lang.Integer"/>
+	<field name="TC_id" class="java.lang.Integer"/>
+	<field name="TC_Name" class="java.lang.String"/>
+	<field name="TC_Code" class="java.lang.String"/>
+	<field name="TC_Description" class="java.lang.String"/>
+	<group name="Project_Name">
+		<groupExpression><![CDATA[$F{Project_Name}]]></groupExpression>
+		<groupHeader>
+			<band height="65">
+				<line>
+					<reportElement uuid="fcdcf43e-1c72-47ae-ab61-62126b271f8f" x="-20" y="33" width="595" height="1" forecolor="#666666"/>
+				</line>
+				<staticText>
+					<reportElement uuid="49ace86e-2501-4220-a855-ee5348dd687e" mode="Opaque" x="0" y="45" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Name]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="71027f36-0298-448f-9dab-c326b6cfe0e1" mode="Opaque" x="138" y="45" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Time Spent]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="982c97b9-32df-47f4-ad40-1cc7dfed3c42" mode="Opaque" x="276" y="45" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Date Worked]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="f5a7f0d3-09af-49ec-8392-4df598a81833" mode="Opaque" x="414" y="45" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Time Classification]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="75da142f-f23e-46bf-8599-0b0403d96c0c" mode="Opaque" x="0" y="1" width="226" height="31" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement>
+						<font size="20" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Project_Name}]]></textFieldExpression>
+				</textField>
+				<subreport>
+					<reportElement uuid="e813e731-26e9-4c28-b0c0-ffc882f3c1d4" x="326" y="1" width="226" height="31"/>
+					<subreportParameter name="Project_Name">
+						<subreportParameterExpression><![CDATA[$F{Project_Name}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Ragsubreport.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement uuid="de502b85-8d38-42c3-8b1f-ea299185d706" mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699"/>
+				<staticText>
+					<reportElement uuid="51cedb7f-6794-40a7-a005-c072ef07973d" x="20" y="20" width="234" height="43" forecolor="#FFFFFF"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[All Projects]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="92316bae-88a9-43c2-a5ab-c0a44588d936" x="-38" y="63" width="264" height="20" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[All time use separated by project]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band/>
+	</pageHeader>
+	<detail>
+		<band height="38">
+			<line>
+				<reportElement uuid="a1d28050-4fa7-4592-a931-f38b05a748e1" positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="87f36d70-7ea4-45d1-bfcf-a18f703497e4" x="0" y="0" width="138" height="20"/>
+				<textElement textAlignment="Justified">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Username}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="b8d0c692-d459-40b8-bbb4-eab6285a1b4e" x="188" y="0" width="138" height="20"/>
+				<textElement textAlignment="Justified">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Time_Spent}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="4a50ccfc-8575-4b2f-8cc3-33f651d36a41" x="307" y="0" width="138" height="20"/>
+				<textElement textAlignment="Justified">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Date_Worked}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="8d5c6a25-d3fe-4241-a448-73e874722d88" x="445" y="0" width="110" height="20"/>
+				<textElement textAlignment="Justified">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TC_Name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="39">
+			<textField>
+				<reportElement uuid="18f1e692-3618-4fc5-97b2-2ad15d5e280b" mode="Opaque" x="0" y="26" width="515" height="13" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="679ac8d5-b91d-4c67-b31b-c9a799a6712c" mode="Opaque" x="515" y="26" width="40" height="13" backcolor="#E6E6E6"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="9f4353fb-1226-4ea1-a359-e7f87d55c759" x="0" y="26" width="100" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
